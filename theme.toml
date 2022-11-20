@@ -3,7 +3,7 @@
 
 name        = "Hugo CV"
 license     = "MIT"
-licenselink = "https://github.com/egeorjon/hugo-cv/master/LICENSE"
+licenselink = "https://github.com/thodorus/Hugo_CV/master/LICENSE"
 description = "Single page Curriculum and Portfolio"
 homepage    = "http://example.com/"
 tags        = [ "curriculum", "cv", "potfolio" ]
