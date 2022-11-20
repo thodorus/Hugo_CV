@@ -1,0 +1,30 @@
+{{- define "main" -}}
+<section class="page-list">
+    <div class="container">
+        <h1>{{- .Title -}}</h1>
+        {{- range .Pages -}}
+            <div class="card mb-5">
+                <div class="row g-0 list-item">
+                    <div class="col-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{- .Title -}}</h5>
+                            <div class="card-text">{{- .Content -}}</div>
+                            {{- if isset .Params "github" -}}
+                                <ul class="card-text">
+                                    <li>
+                                        <i class="bi-github" aria-hidden="true"></i> 
+                                        <a href="{{- .Params.github -}}" title="{{- i18n "see-my-work-on" (dict "name" "GitHub") -}}">{{- i18n "all-details" -}}</a>
+                                    </li>
+                                </ul>
+                            {{- end -}}
+                        </div><!-- card-body -->
+                    </div><!-- col -->
+                    <div class="col-4">
+                        {{- partial "image.html" (dict "context" . "Destination" .Params.image "Title" .Title "Text" .Title "colnum" "multi") -}}
+                    </div>
+                </div><!-- list-item -->
+            </div>
+        {{- end -}}
+    </div>
+</section>
+{{- end -}}

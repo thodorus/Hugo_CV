@@ -1,0 +1,62 @@
+{{- define "main" -}}
+    <div class="container">
+        {{- with site.Params.pdfurl -}}
+            <a class="float-end btn btn-primary" href="{{- . -}}" target="_blank">{{- i18n "download-pdf" -}}</a>
+        {{- end -}}
+        <h1><i class="bi-square-fill"></i> {{ .Title -}}</h1>
+        {{- $current_page := . -}}
+        {{- $data_file := index site.Data .Params.Data -}}
+        {{- range sort $data_file "weight" -}}
+            <section class="cv-section cv-{{- .block -}}">
+                {{- $block_type := .block -}}
+                <div class="row cv-section-title">
+                    <div class="col-12">
+                        <h2>{{- .title -}}</h2>
+                    </div>
+                <div class="row cv-section-content">
+                    {{- if isset . "headline" -}}
+                    <div class="row cv-item">
+                        <div class="col-12">
+                            {{ .headline }}
+                        </div>
+                    </div>
+                    {{- else if isset . "items" -}}
+                        {{- range sort .items "weight" "desc" -}}
+                            {{- if eq $block_type "education" -}}
+                                <div class="row cv-item">
+                                    <div class="col-12 col-md-4 cv-range">
+                                        {{- .range -}}
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="cv-school">{{- .school -}}</p>
+                                        <p class="cv-degree">{{- .degree -}}</p>
+                                        <p class="cv-notes">{{- .notes -}}</p>
+                                    </div>
+                                </div>
+                            {{- else if eq $block_type "experience" -}}
+                                <div class="row cv-item">
+                                    <div class="col-12 col-md-4 cv-range">
+                                        {{- .range -}}
+                                    </div>
+                                    <div class="col-12 col-md-8">
+                                        <p class="cv-company">{{- .company -}}</p>
+                                        <p class="cv-role">{{- .role -}}</p>
+                                        <p class="cv-notes">{{- .notes -}}</p>
+                                    </div>
+                                </div>
+                            {{- else if or (eq $block_type "skills") (eq $block_type "hobby") -}}
+                                <div class="row cv-item cv-skills-grp">
+                                    <p class="cv-skills-title">{{- .grouping -}}</p>
+                                    <ul class="cv-skills">
+                                        <li>{{ delimit .list "</li><li>" -}}</li>
+                                    </ul>
+                                </div>
+                            {{- end -}}
+                        {{- end -}}
+                    {{- end -}}
+                    </div>
+                </div>
+            </section>
+        {{- end -}}
+    </div>
+{{- end -}}

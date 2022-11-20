@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {{- partial "head.html" . -}}
+    </head>
+    <body class="{{- partial "main_class.html" . -}}">
+        {{- partial "header.html" . -}}
+        <main role="main">
+            {{- block "main" . }}{{- end }}
+        </main>
+        {{- partial "footer.html" . -}}
+        {{- partial "js.html" . -}}
+    </body>
+</html>
+{{- define "partials/main_class.html" -}}
+    {{- $class := slice "page-content " -}}
+    {{ if .IsHome }}{{- $class = $class | append (slice "home") -}}
+    {{- else if .IsPage -}}
+        {{- $class = $class | append (slice "single-page") -}}
+        {{- $class = $class | append (slice (printf "page-%s" (.Layout | default "standard"))) -}}
+        {{- $class = $class | append (slice (printf "page-%s" (.Type | default "page"))) -}}
+    {{- else -}}
+        {{- $class = $class | append (slice "list-page") -}}
+        {{- if .IsSection }}
+            {{- $class = $class | append (slice (printf "section-%s" .Type)) -}}
+        {{- else if eq .Kind "taxonomy" -}}
+            {{- $class = $class | append (slice (printf "taxonomy taxonomy-%s" .Type )) -}}
+        {{- else if eq .Kind "term" }}
+            {{- $class = $class | append (slice (printf "%s-term" .Type )) -}}
+        {{- end -}}
+    {{- end -}}
+    {{- return (delimit $class " ") -}}
+{{- end -}}

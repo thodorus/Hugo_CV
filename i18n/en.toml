@@ -1,0 +1,51 @@
+
+[hello]
+    other = "Hello"
+    
+[follow-me]
+    other = "Follow-me"
+
+[follow-me-on]
+    other = "Follow me on {{ .name }}"
+
+[see-my-work-on]
+    other = "See my work on {{ .name }}"
+
+[all-details]
+    other = "For further details"
+
+[first-name]
+	other = "First name"
+
+[last-name]
+	other = "Last Name"
+
+[email]
+	other="Your e-mail address"
+
+[placeholder-email]
+	other="Pleas enter your e-mail address"
+
+[subject]
+	other="The purpose of your message"
+
+[placeholder-subject]
+	other="Please enter the subject here"
+
+[your-message]
+	other="Your message"
+
+[placeholder-message]
+	other="Please enter your message here"
+
+[submit]
+    other="Send the message"
+
+[download-pdf]
+    other = "Download the PDF version"
+
+[image-not-found]
+    other = "Image not found"
+
+[current]
+    other = "Current menu"

@@ -1,0 +1,30 @@
+<footer id="page-footer">
+    <div class="container footer-inner">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4">
+            <aside class="footer-item footer-coord col">
+                {{- with site.Params.footer.infopage -}}
+                    {{- with site.GetPage . -}}
+                        {{- .Content -}}
+                    {{- end -}}
+                {{- end -}}
+            </aside>
+            <aside class="footer-item footer-socials col">
+                {{- partial "follow-me.html" (dict "context" . "params" (dict "display" true)) -}}
+            </aside>
+            <aside class="footer-item footer-legals col">
+                {{- with site.Params.footer.legalpages -}}
+                <ul>
+                    {{- range sort . -}}
+                        {{- with site.GetPage .name -}}
+                            <li><a href="{{- .Permalink | relLangURL -}}" title="{{- .Title -}}">{{- .Title -}}</a></li>
+                        {{- end -}}
+                    {{- end -}}
+                </ul>
+                {{- end -}}
+            </aside>
+            <aside class="footer-item footer-copyright col">
+                <p>{{- site.Copyright | safeHTML -}}</p>
+            </aside>
+        </div>
+    </div>
+</footer>

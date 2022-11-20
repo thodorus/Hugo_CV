@@ -1,0 +1,173 @@
+@use "sass:map";
+
+$imperial-red : #e63946;
+$honeydew     : #f1faee;
+$powder-blue  : #f3f7ff; // #a8dadcff;
+$celadon-blue : #457b9d;
+$prussian-blue: #1d3557;
+
+$primary:       blue; // $imperial-red;
+$secondary:     $powder-blue;
+$light:         #f9fafa; // $powder-blue;  /* $honeydew;*/
+$medium:        $celadon-blue;
+$dark:          #333; // $prussian-blue;
+
+// Boostrap customization
+@import "custom";
+
+// Set of icons
+@import "bootstrap-icons-1.9.1/bootstrap-icons";
+
+h1 {
+    margin-bottom: 2em;
+}
+
+.navbar {
+    background-color: $body-bg !important;
+}
+
+.nav-link {
+    color: $body-color;
+    text-decoration: none;
+    font-variant: small-caps;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
+
+.translations {
+    .disabled {
+        opacity: 0.4;
+    }
+
+    a {
+        display: inline!important;
+    }
+}
+
+main {
+    padding-top: 2em;
+    padding-bottom: 1em;  
+}
+
+.identity-card {
+    text-align: center;
+    max-width: 300px;
+    background-color: #F4ECE6;
+    padding-top: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.identity-image {
+    border-radius: 50%;
+    margin-bottom: 2em;
+}
+
+.identity-card ul {
+    margin-top: 2em;
+    background-color: white;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.identity-card li {
+    display: inline;
+    line-height: 3em;
+    margin-right: 1.5em;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.home main {
+    background-image: url("../img/background_vertical.png");
+    background-repeat: repeat-x;
+}
+
+.page-contact main, .page-pages main, .page-cv main, .section-projects main {
+    background-color: #F4ECE6
+}
+
+@media screen and (min-width: 768px) {
+    .home main {
+        background-image: url("../img/background_horizontal.png");
+        background-size: 100% 100%;
+    }
+
+    .identity-card {
+        margin-left: auto;
+        margin-right: 0;
+    }
+
+}
+
+.bi-square-fill {
+    color: blue;
+}
+
+.footer-item {
+    margin-top: 2em;
+
+    ul {
+        padding-left: 0;
+        list-style-type: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: $body-color;
+    }
+}
+
+.cv-item {
+    background-color: white;
+    margin-bottom: 3em;
+    padding: 1.5em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.contact-content {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 2em;
+}
+
+.cv-skills-title, .cv-range {
+    font-weight: bold;
+    color: blue;
+}
+
+.cv-skills-title {
+    margin-bottom: 0;
+}
+
+.cv-company, .cv-school {
+    margin-bottom: 0;
+    font-style: italic;
+}
+
+.cv-role, .cv-degree {
+    font-weight: bold;
+}
+
+.cv-hobby-grp, .cv-skills-grp {
+    list-style-type: disc;
+}
+
+.list-item {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.section-projects main, .page-cv main {
+    padding-top: 3em;
+}
+
+.cv-section {
+    padding-top: 3em;
+}
+

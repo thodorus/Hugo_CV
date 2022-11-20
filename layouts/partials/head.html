@@ -1,0 +1,65 @@
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+        document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');
+    </script>
+    {{- $title := slice .Title -}} 
+    {{- if not .IsHome -}} 
+        {{- $title = $title | append (slice (site.Title | markdownify | plainify)) -}}
+    {{- end -}}
+    <title>{{- delimit $title " &dash; " -}}</title>
+
+    {{- if ne .Kind "404" -}} 
+        {{- $description := .Params.description | default site.Params.Description | default "" -}} 
+        {{ with $description }}
+            <meta name="description" content="{{- . | markdownify | plainify | htmlUnescape -}}" />
+        {{ end }}
+        {{- $keywords := .Params.tags | default site.Params.Keywords | default "" -}}
+        {{ with $keywords }}
+            <meta name="keywords" content="{{- delimit . " , " | plainify | htmlUnescape -}}" />
+        {{ end }}
+    {{- end -}}
+    {{- with site.Author.name -}}
+        <meta name="author" content="{{- . -}}">
+    {{- end -}}
+    <meta name="rating"  content="General" /> 
+    {{- if .IsHome -}}
+        <meta name="application-name" content="{{- site.Title -}}" />
+    {{- end -}} 
+    
+    {{- hugo.Generator -}} 
+
+    {{- if ne .Kind "404" -}} 
+        {{- $opengraph := site.Params.opengraph | default site.Data.default_params.params.opengraph -}} 
+        {{- if eq $opengraph "internal" -}} 
+            {{- template "_internal/opengraph.html" . -}}
+        {{- else if eq $opengraph "theme" -}} 
+            {{- partial "partials/opengraph.html" . -}}
+        {{- end -}} 
+        {{- $twitter := site.Params.twitterCards | default site.Data.default_params.params.twittercards -}} 
+        {{- if eq $twitter "internal" -}} 
+            {{- template "_internal/twitter_cards.html" . -}} 
+        {{- else if eq $twitter "theme" -}} 
+            {{- partial "partials/twitter.html" . -}} 
+        {{- end -}} 
+        {{- $schema := site.Params.schema | default site.Data.default_params.params.schema -}} 
+        {{- if eq $schema "internal" -}} 
+            {{- template "_internal/schema.html" . -}} 
+        {{- else if eq $schema "theme" -}} 
+            {{- $param := anchorize (print "%s-%s" .Kind .Title) -}} 
+            {{- partial "partials/schema.html" . $param -}} 
+        {{- end -}} 
+    {{- end -}} 
+
+    {{- $production := or (or (eq (getenv "HUGO_ENV") "production") hugo.IsProduction) (not .Site.IsServer) -}} 
+    {{- if $production -}}
+        <meta name="robots" content="index,follow" /> 
+    {{- else -}}
+        <meta name="robots" content="noindex,nofollow" />
+        <meta http-equiv="cache-control" content="no-cache" /> 
+    {{- end }} 
+    
+    <link rel="canonical" href="{{- .Permalink -}}" />
+    
+    {{- partialCached "partials/styles.html" . -}}

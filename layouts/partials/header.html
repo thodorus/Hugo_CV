@@ -1,0 +1,35 @@
+<header id="page-header" class="sticky-top">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{{- site.BaseURL -}}" title="{{- site.Title -}}"><i class="bi-square-fill"></i> {{ site.Title -}}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarToggler">
+                <ul class="navbar-nav">
+                    {{- $currentPage := .CurrentSection -}}
+                    {{- range site.Menus.main -}}
+                        {{- $active := ""    -}}
+                        {{- $link   := .Name -}}
+                        {{- if or ($currentPage.IsMenuCurrent "main" . ) ($currentPage.HasMenuCurrent "main" .) -}}
+                            {{- $active = " active" -}}
+                            {{- $link   = printf "%s<span class=\"visually-hidden\"> (%s)</span>" .Name (i18n "current") -}}
+                        {{- end }}
+                        <li class="nav-item me-md-4">
+                            <a class="nav-link {{- $active -}}" href="{{- .URL | absLangURL -}}" id="{{- .Identifier -}}" title="{{- .Name -}}">{{- safeHTML $link -}}</a>
+                        </li>
+                    {{- end -}}
+                    {{- if site.Params.enabletranslation -}}
+                        {{- with .AllTranslations -}}
+                            <li class="nav-item me-md-4 translations">
+                                {{ range . }}
+                                    <a href="{{ .Permalink }}" class="nav-link {{ if eq .Language.Lang $.Lang -}}disabled{{- end -}}"><img height="22" with="32" src="{{- printf "/img/%s.png" .Language.Lang -}}" /></a>
+                                {{ end }}
+                            </li>
+                        {{- end -}}
+                    {{- end -}}
+                </ul>
+            </div><!-- end of navbar -->
+        </div><!-- end of container -->
+    </nav>
+</header>

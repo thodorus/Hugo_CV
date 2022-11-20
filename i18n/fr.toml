@@ -1,0 +1,51 @@
+
+[hello]
+    other = "Bonjour"
+    
+[follow-me]
+    other = "Suivez-moi"
+
+[follow-me-on]
+    other = "Suivez moi sur {{ .name }}"
+
+[see-my-work-on]
+    other = "Explorez mon travail sur {{ .name }}"
+
+[all-details]
+    other = "Pour plus d'informations"
+
+[email]
+	other = "Votre adresse de messagerie"
+
+[placeholder-email]
+	other = "Merci de saisir votre adresse de messagerie"
+
+[first-name]
+	other = "Prénom"
+
+[last-name]
+	other = "Nom"
+
+[subject]
+	other = "Sujet de votre message"
+
+[placeholder-subject]
+	other = "Merci de saisir le sujet"
+
+[your-message]
+	other = "Votre message"
+
+[placeholder-message]
+	other = "Merci de saisir votre message"
+
+[submit]
+	other = "Envoyer le message"
+
+[download-pdf]
+    other = "Télécharger la version PDF"
+
+[image-not-found]
+    other = "Image non trouvée"
+
+[current]
+    other = "Menu sélectionné"
