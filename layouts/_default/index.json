@@ -6,7 +6,6 @@
         {{- $.Scratch.Add "index" (dict 
                 "title" .Title 
                 "tags" $tags 
-                "categories" (.Params.categories | default slice)
                 "contents" (substr (.Plain | htmlUnescape) 0 500) 
                 "permalink" .Permalink 
                 "section" .Parent.Name 
